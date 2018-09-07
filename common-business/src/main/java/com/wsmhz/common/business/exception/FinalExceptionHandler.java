@@ -1,6 +1,6 @@
 package com.wsmhz.common.business.exception;
 
-import com.wsmhz.common.business.response.ServerResponse;
+import com.wsmhz.common.data.response.ServerResponse;
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,10 +1,7 @@
 com\wsmhz\common\business\mapper\MyBaseMapper.class
-com\wsmhz\common\business\utils\JsonUtil.class
 com\wsmhz\common\business\exception\FinalExceptionHandler.class
 com\wsmhz\common\business\utils\DateTimeUtil.class
 com\wsmhz\common\business\service\BaseServiceImpl.class
-com\wsmhz\common\business\response\ResponseCode.class
 com\wsmhz\common\business\service\BaseService.class
 com\wsmhz\common\business\dto\MybatisPage.class
-com\wsmhz\common\business\response\ServerResponse.class
 com\wsmhz\common\business\utils\MD5Util.class
