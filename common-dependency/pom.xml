@@ -3,13 +3,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>wsmhz.common</artifactId>
+        <artifactId>wsmhz-common</artifactId>
         <groupId>com.wsmhz.common</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common.dependency</artifactId>
+    <artifactId>common-dependency</artifactId>
+
+    <properties>
+        <io.springfox.version>2.7.0</io.springfox.version>
+        <common-net.version>3.6</common-net.version>
+        <common-io.version>2.4</common-io.version>
+        <commons-fileupload.version>1.3.3</commons-fileupload.version>
+        <commons-beanutils.version>1.9.3</commons-beanutils.version>
+        <commons-collections4.version>4.3</commons-collections4.version>
+        <commons-configuration2.version>2.4</commons-configuration2.version>
+        <tk.mybatis.version>2.0.0</tk.mybatis.version>
+        <pagehelper.version>1.2.10</pagehelper.version>
+        <commons-lang3.version>3.8.1</commons-lang3.version>
+    </properties>
 
     <dependencies>
         <!--热部署/自动编译-->
@@ -34,61 +47,52 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.social</groupId>-->
-            <!--<artifactId>spring-social-config</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.social</groupId>-->
-            <!--<artifactId>spring-social-core</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.social</groupId>-->
-            <!--<artifactId>spring-social-security</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.social</groupId>-->
-            <!--<artifactId>spring-social-web</artifactId>-->
-        <!--</dependency>-->
         <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
         </dependency>
         <dependency>
-            <groupId>commons-collections</groupId>
-            <artifactId>commons-collections</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${commons-collections4.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
+            <version>${commons-beanutils.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
+            <version>${common-io.version}</version>
         </dependency>
         <!-- FTP依赖 -->
         <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
+            <version>${common-net.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
+            <version>${commons-fileupload.version}</version>
         </dependency>
         <dependency>
-            <groupId>commons-configuration</groupId>
-            <artifactId>commons-configuration</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-configuration2</artifactId>
+            <version>${commons-configuration2.version}</version>
         </dependency>
         <!-- FTP依赖 -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>2.7.0</version>
+            <version>${io.springfox.version}</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.7.0</version>
+            <version>${io.springfox.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -101,18 +105,18 @@
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-            <version>2.3</version>
+            <version>${joda-time.version}</version>
         </dependency>
         <!-- 通用Mapper -->
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
-            <version>2.0.0</version>
+            <version>${tk.mybatis.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>RELEASE</version>
+            <version>${pagehelper.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>mybatis</artifactId>

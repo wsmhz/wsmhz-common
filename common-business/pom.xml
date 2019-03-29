@@ -3,24 +3,28 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>wsmhz.common</artifactId>
+        <artifactId>wsmhz-common</artifactId>
         <groupId>com.wsmhz.common</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common.business</artifactId>
+    <artifactId>common-business</artifactId>
+
+    <properties>
+        <com.wsmhz.common.version>1.0-SNAPSHOT</com.wsmhz.common.version>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.wsmhz.common</groupId>
-            <artifactId>common.dependency</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <artifactId>common-dependency</artifactId>
+            <version>${com.wsmhz.common.version}</version>
         </dependency>
         <dependency>
             <groupId>com.wsmhz.common</groupId>
-            <artifactId>common.data</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <artifactId>common-data</artifactId>
+            <version>${com.wsmhz.common.version}</version>
             <exclusions>
                 <exclusion>
                     <!--json-->
@@ -32,8 +36,8 @@
                     <artifactId>jackson-mapper-asl</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>commons-lang</groupId>
-                    <artifactId>commons-lang</artifactId>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-lang3</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.slf4j</groupId>

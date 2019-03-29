@@ -3,13 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>wsmhz.common</artifactId>
+        <artifactId>wsmhz-common</artifactId>
         <groupId>com.wsmhz.common</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common.data</artifactId>
+    <artifactId>common-data</artifactId>
+
+    <properties>
+        <commons-lang3.version>3.8.1</commons-lang3.version>
+        <codehua.jackson.version>1.9.13</codehua.jackson.version>
+    </properties>
 
     <dependencies>
         <!--json-->
@@ -20,10 +25,12 @@
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
+            <version>${codehua.jackson.version}</version>
         </dependency>
         <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
