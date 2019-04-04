@@ -1,4 +1,4 @@
-package com.wsmhz.common.data.response;
+package com.wsmhz.common.business.response;
 
 /**
  * create by tangbj on 2018/3/26

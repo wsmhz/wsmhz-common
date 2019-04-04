@@ -1,4 +1,4 @@
-package com.wsmhz.common.data.utils;
+package com.wsmhz.common.business.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.map.DeserializationConfig;

@@ -1,4 +1,4 @@
-package com.wsmhz.common.data.domain;
+package com.wsmhz.common.business.domain;
 
 import java.io.Serializable;
 import java.util.Date;

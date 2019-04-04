@@ -9,9 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>common-dependency</module>
         <module>common-business</module>
-        <module>common-data</module>
+        <module>micro-service-parent</module>
     </modules>
 
     <properties>
@@ -31,15 +30,4 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 </project>
