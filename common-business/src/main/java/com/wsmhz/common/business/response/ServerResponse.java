@@ -1,4 +1,4 @@
-package com.wsmhz.common.data.response;
+package com.wsmhz.common.business.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
