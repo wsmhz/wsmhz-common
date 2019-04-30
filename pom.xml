@@ -11,6 +11,7 @@
     <modules>
         <module>common-business</module>
         <module>micro-service-parent</module>
+        <module>micro-service-api-parent</module>
     </modules>
 
     <properties>
