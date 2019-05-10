@@ -1,10 +1,11 @@
 package com.wsmhz.common.business.annotation;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import java.lang.annotation.*;
 
 /**
@@ -15,9 +16,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented
+@EnableScheduling
 @EnableAsync
-@MapperScan("com.wsmhz.**.mapper")
-@ComponentScan("com.wsmhz")
+@tk.mybatis.spring.annotation.MapperScan(basePackages = "com.wsmhz.**.mapper")
 @EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 @EnableTransactionManagement
 public @interface WsmhzMicroServiceApplication {
