@@ -11,6 +11,7 @@ import java.lang.reflect.Type;
 /**
  * 自定义FastJson消息转换器
  */
+//public class CustomFastJsonMessageConverter{}
 public class CustomFastJsonMessageConverter extends FastJsonHttpMessageConverter {
     @Override
     public void write(Object o, Type type, MediaType contentType, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {

@@ -50,14 +50,14 @@ public class FTPUtil {
 	public  static boolean uploadFile(List<File> fileList) throws IOException{
 		FTPUtil ftPutil=new FTPUtil(ftpIp, 21, ftpUser, ftpPwd);
 		log.info("开始连接FTP服务器");
-		boolean result=ftPutil.uploadFile("img", fileList);
+		boolean result=ftPutil.uploadFile("/", fileList);
 		log.info("结束上传，上传结果:{}",result);
 		return result;
 	}
 	public  static boolean deleteFile(String fileName) throws IOException{
 		FTPUtil ftPutil=new FTPUtil(ftpIp, 21, ftpUser, ftpPwd);
 		log.info("开始连接FTP服务器");
-		boolean result=ftPutil.deleteFile("img", fileName);
+		boolean result=ftPutil.deleteFile("/", fileName);
 		log.info("结束删除，删除结果:{}",result);
 		return result;
 	}
@@ -89,7 +89,8 @@ public class FTPUtil {
 				ftpClient.setBufferSize(1024);
 				ftpClient.setControlEncoding("UTF-8");
 				ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
-				ftpClient.enterLocalPassiveMode();
+				ftpClient.enterLocalActiveMode();    //主动模式
+				// ftpClient.enterLocalPassiveMode(); 被动模式
 				for (File fileItem : fileList) {
 					fis=new FileInputStream(fileItem);
 					uploaded=ftpClient.storeFile(fileItem.getName(), fis);

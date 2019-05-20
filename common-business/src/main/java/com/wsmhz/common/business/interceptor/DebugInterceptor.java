@@ -2,7 +2,7 @@ package com.wsmhz.common.business.interceptor;
 
 import com.alibaba.fastjson.JSON;
 import com.wsmhz.common.business.exception.GlobalExceptionHandler;
-import com.wsmhz.common.business.utils.BusinessUtil;
+import com.wsmhz.common.business.utils.WebUtil;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -31,7 +31,7 @@ public class DebugInterceptor extends HandlerInterceptorAdapter {
     private ThreadLocal<Object[]> paramsCache = ThreadLocal.withInitial(() -> null);
     private ThreadLocal<Object> resultCache = ThreadLocal.withInitial(() -> null);
 
-    @Pointcut("execution(public * com.wsmhz.*.controller.*.*(..)) ||" +
+    @Pointcut("execution(public * com.wsmhz..controller.*.*(..)) ||" +
               "execution(public * com.wsmhz.*.*.controller.*.*(..)) ||" +
               "execution(public com.wsmhz.common.business.response.ServerResponse com.wsmhz.common.business.exception.GlobalExceptionHandler.*(..)) ")
     public void resultAop() {}
@@ -61,7 +61,7 @@ public class DebugInterceptor extends HandlerInterceptorAdapter {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         StringBuilder str = new StringBuilder();
         str.append("\n===================== DebugInterceptor =====================");
-        str.append("\nRemote   IP        : ").append(BusinessUtil.getClientIP());
+        str.append("\nRemote   IP        : ").append(WebUtil.getClientIP());
         str.append("\nRequest  Method    : ").append(request.getMethod());
         str.append("\nRequest  URL       : ")
                 .append(request.getRequestURI())

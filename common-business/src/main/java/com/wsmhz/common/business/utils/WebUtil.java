@@ -10,7 +10,7 @@ import java.util.Optional;
  * Created By TangBiJing On 2019/4/2
  * Description: 一些业务上的工具方法
  */
-public class BusinessUtil {
+public class WebUtil {
 
     /**
      * @return 获得当前请求
