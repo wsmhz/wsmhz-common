@@ -12,6 +12,8 @@ public class Domain implements Serializable {
 
     private Date updateDate;
 
+    private Date deleteDate;
+
     public Date getCreateDate() {
         return createDate;
     }
@@ -26,5 +28,22 @@ public class Domain implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public Date getDeleteDate() {
+        return deleteDate;
+    }
+
+    public void setDeleteDate(Date deleteDate) {
+        this.deleteDate = deleteDate;
+    }
+
+    public Domain(Date createDate, Date updateDate, Date deleteDate) {
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+        this.deleteDate = deleteDate;
+    }
+
+    public Domain() {
     }
 }
