@@ -5,6 +5,7 @@ import com.wsmhz.common.business.response.ServerResponse;
 import com.wsmhz.common.business.utils.WebUtil;
 import com.wsmhz.common.business.utils.JsonUtil;
 import lombok.val;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -34,9 +35,16 @@ public class LimitInterceptor extends HandlerInterceptorAdapter {
             if (limit == null || !limit.enable()) {
                 return true;
             }
-            String key = "LimitInterceptor:" + request.getRequestURI() + ":" +  WebUtil.getClientIP();
+            String authorization = request.getHeader("Authorization");
+            String key = "LimitInterceptor:" + request.getRequestURI();
+            if (authorization != null && authorization.contains("bearer")) {
+                String token = authorization.substring("Bearer".length() + 1);
+                key = key + ":" + token;
+            } else {
+                key = key + ":" + WebUtil.getClientIP();
+            }
             String value = redisTemplate.opsForValue().get(key);
-            if (!org.springframework.util.StringUtils.isEmpty(value)) {
+            if (!StringUtils.isNotBlank(value)) {
                 response.getOutputStream().write(JsonUtil.objToString(ServerResponse.createBySuccessMessage("请勿重复提交请求!")).getBytes(StandardCharsets.UTF_8));
                 return false;
             }
