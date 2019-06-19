@@ -7,10 +7,8 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.wsmhz.common.business.annotation.Exclude;
 import com.wsmhz.common.business.annotation.Include;
 import com.wsmhz.common.business.converter.CustomFastJsonMessageConverter;
-import com.wsmhz.common.business.utils.BeanKit;
+import com.wsmhz.common.business.utils.SpringUtil;
 import lombok.val;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.GenericConverter;
@@ -38,7 +36,7 @@ public class MvcConfigurer implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        BeanKit.getListOfType(HandlerInterceptor.class).forEach(handlerInterceptor -> {
+        SpringUtil.getListOfType(HandlerInterceptor.class).forEach(handlerInterceptor -> {
             val interceptor = registry.addInterceptor(handlerInterceptor);
             val exclude = handlerInterceptor.getClass().getAnnotation(Exclude.class);
             if (Objects.nonNull(exclude)) {
@@ -56,7 +54,7 @@ public class MvcConfigurer implements WebMvcConfigurer {
      */
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.addAll(BeanKit.getListOfType(HandlerMethodArgumentResolver.class));
+        argumentResolvers.addAll(SpringUtil.getListOfType(HandlerMethodArgumentResolver.class));
     }
 
     /**
@@ -64,13 +62,13 @@ public class MvcConfigurer implements WebMvcConfigurer {
      */
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        for (Converter<?, ?> converter : BeanKit.getListOfType(Converter.class)) {
+        for (Converter<?, ?> converter : SpringUtil.getListOfType(Converter.class)) {
             registry.addConverter(converter);
         }
-        for (GenericConverter converter : BeanKit.getListOfType(GenericConverter.class)) {
+        for (GenericConverter converter : SpringUtil.getListOfType(GenericConverter.class)) {
             registry.addConverter(converter);
         }
-        for (Formatter<?> formatter : BeanKit.getListOfType(Formatter.class)) {
+        for (Formatter<?> formatter : SpringUtil.getListOfType(Formatter.class)) {
             registry.addFormatter(formatter);
         }
     }

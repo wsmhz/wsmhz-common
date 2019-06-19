@@ -91,7 +91,7 @@ public class DebugInterceptor extends HandlerInterceptorAdapter {
         }
         str.append("\nResponse Status    : ").append(response.getStatus());
         str.append("\nResponse Body      : ")
-                .append(Optional.ofNullable(resultCache.get()).map(JSON::toJSONString).orElse(null));
+                .append(Optional.ofNullable(resultCache.get()).map(JSON::toJSONString).orElse(ex.getMessage()));
         str.append("\nHandle   Time      : ")
                 .append(TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime.get())).append("ms");
         str.append("\n============================================================");

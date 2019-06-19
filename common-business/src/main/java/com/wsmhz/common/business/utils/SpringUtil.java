@@ -5,6 +5,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
+
 /**
  * @Description: 提供手动获取被spring管理的bean对象
  */
@@ -27,17 +29,22 @@ public class SpringUtil implements ApplicationContextAware {
 
 	// 通过name获取 Bean.
 	public static Object getBean(String name) {
-		return getApplicationContext().getBean(name);
+		return applicationContext.getBean(name);
 	}
 
 	// 通过class获取Bean.
 	public static <T> T getBean(Class<T> clazz) {
-		return getApplicationContext().getBean(clazz);
+		return applicationContext.getBean(clazz);
 	}
 
 	// 通过name,以及Clazz返回指定的Bean
 	public static <T> T getBean(String name, Class<T> clazz) {
-		return getApplicationContext().getBean(name, clazz);
+		return applicationContext.getBean(name, clazz);
+	}
+
+	// 通过name获取 Bean列表
+	public static <T> Collection<T> getListOfType(Class<T> clazz) {
+		return applicationContext.getBeansOfType(clazz).values();
 	}
 
 }
