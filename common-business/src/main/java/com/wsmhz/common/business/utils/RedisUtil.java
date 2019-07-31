@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -73,9 +74,14 @@ public class RedisUtil {
         }
 
         public boolean contains(String key) {
-            val ranges = redisTemplate.opsForList().range(key, 0, -1);
+            val ranges = get(key);
             if (Objects.isNull(ranges)) {return false;}
             return ranges.contains(key);
+        }
+
+        // 查询list从0开始,到index位的值,如果是-1,则表示查询出来所有
+        public java.util.List<String> get(String key){
+            return redisTemplate.opsForList().range(key, 0, -1);
         }
     }
 
@@ -93,9 +99,13 @@ public class RedisUtil {
         }
 
         public boolean contains(String key) {
-            val ranges = redisTemplate.opsForSet().members(key);
+            val ranges = get(key);
             if (Objects.isNull(ranges)) {return false;}
             return ranges.contains(key);
+        }
+
+        public java.util.Set<String> get(String key){
+            return redisTemplate.opsForSet().members(key);
         }
     }
 }

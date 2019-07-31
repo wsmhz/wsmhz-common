@@ -1,6 +1,7 @@
 package com.wsmhz.common.business.utils;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -23,15 +24,22 @@ public class OAuthUtil {
     private RedisUtil redisUtil;
 
     public boolean checkToken(HttpServletRequest request){
-        String authorization = request.getHeader("Authorization");
-        if (authorization == null || ! authorization.contains("bearer")) {
-            return false;
+        String token = getTokenByRequest(request);
+        if(StringUtils.isNotBlank(token)){
+            return checkToken(token);
         }
-        String token = authorization.substring("Bearer".length() + 1);
-        return checkToken(token);
+        return false;
     }
 
     public boolean checkToken(String accessToken){
         return redisUtil.has(ACCESS + accessToken);
+    }
+
+    public String getTokenByRequest(HttpServletRequest request){
+        String authorization = request.getHeader("Authorization");
+        if (authorization == null || ! authorization.contains("bearer")) {
+            return null;
+        }
+        return authorization.substring("Bearer".length() + 1);
     }
 }

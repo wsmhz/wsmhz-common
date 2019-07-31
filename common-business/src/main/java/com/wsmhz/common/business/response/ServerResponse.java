@@ -1,7 +1,9 @@
 package com.wsmhz.common.business.response;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wsmhz.common.business.utils.JsonUtil;
 
 import java.io.Serializable;
 
@@ -16,6 +18,7 @@ public class ServerResponse<T> implements Serializable {
     private int status;
     private String msg;
     private T data;
+    public static final ThreadLocal<String> cacheResult = ThreadLocal.withInitial(() -> null);
 
     private ServerResponse(int status) {
         this.status = status;
@@ -84,5 +87,10 @@ public class ServerResponse<T> implements Serializable {
 
     public static <T> ServerResponse<T> createByErrorCodeMessage(int errorCode, String errorMessage) {
         return new ServerResponse<T>(errorCode, errorMessage);
+    }
+
+    public ServerResponse setCache() {
+        cacheResult.set(JsonUtil.objToString(this));
+        return this;
     }
 }

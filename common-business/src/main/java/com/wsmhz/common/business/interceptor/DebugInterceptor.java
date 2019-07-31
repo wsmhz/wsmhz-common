@@ -2,6 +2,7 @@ package com.wsmhz.common.business.interceptor;
 
 import com.alibaba.fastjson.JSON;
 import com.wsmhz.common.business.exception.GlobalExceptionHandler;
+import com.wsmhz.common.business.response.ServerResponse;
 import com.wsmhz.common.business.utils.WebUtil;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -91,11 +92,12 @@ public class DebugInterceptor extends HandlerInterceptorAdapter {
         }
         str.append("\nResponse Status    : ").append(response.getStatus());
         str.append("\nResponse Body      : ")
-                .append(Optional.ofNullable(resultCache.get()).map(JSON::toJSONString).orElse(ex.getMessage()));
+                .append(Optional.ofNullable(resultCache.get()).map(JSON::toJSONString).orElse(ServerResponse.cacheResult.get()));
         str.append("\nHandle   Time      : ")
                 .append(TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime.get())).append("ms");
         str.append("\n============================================================");
         log.info(str.toString());
+        ServerResponse.cacheResult.remove();
         signature.remove();
         paramsCache.remove();
         resultCache.remove();

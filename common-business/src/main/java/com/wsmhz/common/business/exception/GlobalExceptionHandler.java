@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
@@ -72,7 +73,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         HttpServletRequest req = ((ServletWebRequest) request).getNativeRequest(HttpServletRequest.class);
         return handleExceptionInternal(
                 ex,
-                ServerResponse.createByErrorCodeMessage(HttpStatus.METHOD_NOT_ALLOWED.value(), "请求METHOD不支持"),
+                ServerResponse.createByErrorCodeMessage(HttpStatus.METHOD_NOT_ALLOWED.value(), req.getRequestURI() + req.getMethod() + "请求METHOD不支持"),
                 headers, status, request);
     }
 
@@ -81,7 +82,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         HttpServletRequest req = ((ServletWebRequest) request).getNativeRequest(HttpServletRequest.class);
         return handleExceptionInternal(
                 ex,
-                ServerResponse.createByErrorCodeMessage(HttpStatus.NOT_FOUND.value(), "路径未找到!"),
+                ServerResponse.createByErrorCodeMessage(HttpStatus.NOT_FOUND.value(), req.getRequestURI() + "路径未找到!"),
                 headers, status, request);
     }
 
@@ -90,6 +91,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public  ServerResponse handleControllerException(Throwable ex) {
         log.error(ex.toString());
         return  ServerResponse.createByErrorCodeMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getClass().getName() + ": " + ex.getMessage());
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        if (body instanceof ServerResponse) {((ServerResponse) body).setCache();}
+        headers.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE);
+        return super.handleExceptionInternal(ex, body, headers, status, request);
     }
 
 }
