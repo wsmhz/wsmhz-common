@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -23,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Slf4j
 @Component
+@ConditionalOnProperty(name = "wsmhz-micro-service-common.auth.interceptor.enabled", havingValue = "true")
 @ConditionalOnBean(OAuthUtil.class)
 public class AuthInterceptor implements HandlerInterceptor {
 
