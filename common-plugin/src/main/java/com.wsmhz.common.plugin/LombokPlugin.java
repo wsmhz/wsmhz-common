@@ -18,7 +18,7 @@ import java.util.List;
  * Description: 自定义lombok插件生成
  */
 public class LombokPlugin extends PluginAdapter {
-    private String javadoc = "/**\n * Created with Mybatis Generator Plugin\n *\n * @Author wsmhz\n * @Date " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm")) + "\n */";
+    private String javadoc = "/**\n * Created with Mybatis Generator Plugin\n *\n * @author wsmhz\n * Created on " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm")) + "\n */";
     private FullyQualifiedJavaType repoAnnotation = new FullyQualifiedJavaType("org.springframework.stereotype.Repository");
     private FullyQualifiedJavaType getterAnnotation = new FullyQualifiedJavaType("lombok.Getter");
     private FullyQualifiedJavaType setterAnnotation = new FullyQualifiedJavaType("lombok.Setter");
