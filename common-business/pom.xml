@@ -26,7 +26,7 @@
         <common-codec.version>1.11</common-codec.version>
         <codehua.jackson.version>1.9.13</codehua.jackson.version>
         <dozer.verison>5.5.1</dozer.verison>
-        <fastjson.version>1.2.55</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
     </properties>
 
     <dependencies>
